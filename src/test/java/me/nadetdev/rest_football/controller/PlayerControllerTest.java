@@ -29,7 +29,7 @@ public class PlayerControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    PlayerService playerService;
+    private PlayerService playerService;
 
     @Test
     public void testListPlayers() throws Exception {
