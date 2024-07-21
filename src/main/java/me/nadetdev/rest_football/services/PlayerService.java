@@ -16,8 +16,8 @@ public class PlayerService {
 
     private Map<String, Player> players = new HashMap<>();
 
-    public PlayerService(Map<String, Player> players) {
-        generateDummyPlayersList(players);
+    public PlayerService() {
+        generateDummyPlayersList();
     }
 
     public List<Player> listPlayers(){
@@ -57,7 +57,7 @@ public class PlayerService {
         }
     }
 
-    private Map<String, Player> generateDummyPlayersList(Map<String, Player> listOfPlayers){
+    private void generateDummyPlayersList(){
         Player messi = new Player("1", 1, "Messi", "Forward", LocalDate.of(1986, 1, 10));
         Player ronaldo = new Player("2", 2, "Ronaldo", "Forward", LocalDate.of(1995, 3, 5));
         Player neymar = new Player("3", 3, "Neymar", "Forward", LocalDate.of(2000, 7, 20));
@@ -68,10 +68,7 @@ public class PlayerService {
         players.put(messi.id(), messi);
         players.put(ronaldo.id(), ronaldo);
         players.put(neymar.id(), neymar);
-        players.put(mbappe.id(), mbappe);
         players.put(kante.id(), kante);
         players.put(pogba.id(), pogba);
-
-        return players;
     }
 }
