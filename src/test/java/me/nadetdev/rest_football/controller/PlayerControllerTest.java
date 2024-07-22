@@ -2,6 +2,7 @@ package me.nadetdev.rest_football.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import me.nadetdev.rest_football.exceptions.NotFoundException;
 import me.nadetdev.rest_football.model.Player;
 import me.nadetdev.rest_football.services.PlayerService;
 import org.junit.jupiter.api.Test;
@@ -57,6 +58,16 @@ public class PlayerControllerTest {
         );
 
         assertArrayEquals(players.toArray(), returnedPlayers.toArray());
+    }
+
+    @Test
+    public void testReadPlayer_doesNotExist() throws Exception {
+        String id = "25";
+        given(playerService.getPlayer(id)).willThrow(new NotFoundException("Player not found"));
+
+        mvc.perform(MockMvcRequestBuilders.get("/players/" + id)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 
     private List<Player> generatePlayersList(){
